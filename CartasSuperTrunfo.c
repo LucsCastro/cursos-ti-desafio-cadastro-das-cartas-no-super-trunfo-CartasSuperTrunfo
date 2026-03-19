@@ -84,14 +84,7 @@ scanf("%i", &NPT1);
   densidade2 = (float) populacao2 / area2;
   pibPerCapita2 = (PIB2 * 1000000000) / populacao2;
   superPoder2 = (float)populacao2 + area2 + PIB2 + NPT2 + pibPerCapita2 + (1.0 / densidade2);
-  resultadoPopulacao = populacao1 > populacao2;
-  resultadoPIB = PIB1 > PIB2;
-  resultadoArea = area1 > area2;
-  resultadoNPT = NPT1 > NPT2;
-  resultadoPibPerCapita = pibPerCapita1 > pibPerCapita2;
-  resultadoDensidade = densidade1 < densidade2;
-// Comparação Do Super Poder Da Carta 1 e 2 
-  resultadoSuperPoder = superPoder1 > superPoder2; 
+
 // Dados da Primeira Carta Cadastrada
   printf("🃏 Carta 1 🃏:\n");
   printf("Estado 🧩: %c\n", estado1);
@@ -114,16 +107,58 @@ scanf("%i", &NPT1);
   printf("Quantidade de Pontos Turísticos 🛫: %i\n", NPT2);
   printf("Densidade Populacional 🚻: %.2f hab/km²\n", densidade2);
   printf("PIB per Capita 💲: %.2f Reais\n",pibPerCapita2);
-  // Resultado das Cartas 
-  printf("🛑 INFO 🛑\n Se nos resultados aparecer o '1' significa que a Primeira Carta venceu e o '0' a Segunda Carta venceu\n");
-  printf("Resultado da Comparação Das Cartas🃏\n");
-  printf("Resultado da Comparação da População 🏠: %d\n", resultadoPopulacao);
-  printf("Resultado da Comparação da Área 📐: %d\n", resultadoArea);
-  printf("Resultado da Comparação da Quantidade de Pontos Turísticos 🛬: %d\n", resultadoNPT);
-  printf("Resultado da Comparação da Densidade Populacional 🚻: %d\n", resultadoDensidade);
-  printf("Resultado da Comparação da Pib per Capita 💲 : %d\n", resultadoPibPerCapita);
-  printf("Resultado da Comparação Dos Super Poderes 💪: %d\n", resultadoSuperPoder);
-  
+  printf("============================================================================\n"); 
+// Resultado das Cartas 
+// Comparação Usando IF e ELSE
+if (populacao1 > populacao2)
+{
+printf("Carta %s Venceu a Primeira Rodada 🎉\n", cidade1);
+}else
+{
+printf("Carta %s Venceu a Primeira Rodada 🎉\n", cidade2);
+}
+if (PIB1 > PIB2)
+{
+printf("Carta %s Venceu a Segunda Rodada 😁🎉\n", cidade1);
+}else
+{
+printf("Carta %s Venceu a Segunda Rodada 😁🎉\n", cidade2);
+}
+if (area1 > area2)
+{
+printf("Carta %s Venceu a Terceira Rodada 😜🎉\n", cidade1);
+}else
+{
+printf("Carta %s Venceu a Terceira Rodada 😜🎉\n", cidade2);
+}
+if (NPT1 > NPT2)
+{
+printf("Carta %s Venceu a Quarta Rodada 🥱🎉\n", cidade1);
+}else
+{
+printf("Carta %s Venceu a Quarta Rodada 🥱🎉\n", cidade2);
+}
+if (densidade1 < densidade2)
+{
+printf("Carta %s Venceu a Quinta Rodada 😎🎉\n", cidade1);
+}else
+{
+printf("Carta %s Venceu a Quinta Rodada 😎🎉\n", cidade2);
+}
+if (pibPerCapita1 > pibPerCapita2)
+{
+printf("Carta %s Venceu a Sexta Rodada 😳🕶🤏\n", cidade1);
+}else
+{
+printf("Carta %s Venceu a Sexta Rodada 😳🕶🤏\n", cidade2);
+}
+if (superPoder1 > superPoder2)
+{
+printf("Carta %s Venceu a Setima e Ultima Rodada ✋😬🤚\n", cidade1);
+}else
+{
+printf("Carta %s Venceu a Setima e Ultima Rodada ✋😬🤚\n", cidade2);
+} 
   return 0;
 
 }
