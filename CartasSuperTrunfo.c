@@ -101,7 +101,7 @@ printf("| 5. Densidade Populacional (Vence o Menor!)🚻\n");
 printf("| 6. Pib Per Capita 💲\n");
 printf("| 7. Super Poder 💪\n");
 printf("| 8. Comparar Todos os Atributos 📊\n");
-printf("| Digite o Número de sua Opção ➡ \n");
+printf("| Digite o Número de sua Opção ➡ a");
 scanf("%d", &opcaomenu);
 printf("============================================================================\n");
 
