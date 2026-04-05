@@ -1,7 +1,7 @@
 #include <stdio.h>
   
 int main(){
-// Dados da Primeira Carta
+//Dados da Primeira Carta
   char estado1;
   char codigo1[4];
   char cidade1[51];
@@ -11,7 +11,7 @@ int main(){
   int NPT1;
   float densidade1, pibPerCapita1;
   float superPoder1;
-// Dados da Segunda carta
+//Dados da Segunda carta
   char cidade2[51]; 
   char codigo2[4];
   char estado2;
@@ -21,10 +21,18 @@ int main(){
   int NPT2;
   float densidade2, pibPerCapita2;
   float superPoder2;
-  //Variaveis de Controle
+//Variaveis de Controle
+  int voltarMenu;
   int opcaomenu;
+  int primOpcao, segOpcao;
   int jogarNovamente;
-  //Avisos sobre o jogo
+//Váriaveis para armazenar os valores escolhidos
+  float valor1_Atr1, valor2_Atr1;
+  float valor1_Atr2, valor2_Atr2;
+//Váriaveis de pontuação (Para inverter a densidade)
+  float pontuacaoCarta1_Atr1, pontuacaoCarta2_Atr1;
+  float pontuacaoCarta1_Atr2, pontuacaoCarta2_Atr2;
+//Avisos sobre o jogo
   printf("============================================================================\n");
   printf("| Use Dados Reais Dos Estados ou Cidades Para Uma Melhor Experiência 😎👍\n");
   printf("| 🛑 INFO: NÃO use vírgulas. Use PONTO para decimais.\n");
@@ -40,7 +48,7 @@ printf("Digite o Código da Carta 🌐: \n");
 scanf("%s", codigo1);
 
 printf("Digite a Cidade Da Carta 🌃: \n");
-scanf("%s", cidade1);
+scanf(" %s", cidade1);
 
 printf("Digite a População Da Carta 🏠: \n");
 scanf("%d", &populacao1);
@@ -64,7 +72,7 @@ scanf("%i", &NPT1);
   scanf("%s", codigo2);
 
   printf("Digite a Cidade Da Carta 🌃: \n"); 
-  scanf("%s", cidade2);
+  scanf(" %s", cidade2);
 
   printf("Digite a População Da Carta 🏠: \n");
   scanf("%d", &populacao2);
@@ -88,8 +96,7 @@ scanf("%i", &NPT1);
 //Inicio Do Loop ' Do '
 //
 //MENU Comparações individuais das Cartas
-do
-{
+do{
 printf("Cartas Super Trunfo 🃏\n");
 printf("============================================================================\n");
 printf("| ⬇ Escolha Quais atributos deseja comparar ⬇\n");
@@ -101,7 +108,7 @@ printf("| 5. Densidade Populacional (Vence o Menor!)🚻\n");
 printf("| 6. Pib Per Capita 💲\n");
 printf("| 7. Super Poder 💪\n");
 printf("| 8. Comparar Todos os Atributos 📊\n");
-printf("| Digite o Número de sua Opção ➡ a");
+printf("| Digite o Número de sua Opção ➡ ");
 scanf("%d", &opcaomenu);
 printf("============================================================================\n");
 
@@ -311,6 +318,7 @@ printf("Carta %s Venceu a Setima e Ultima Rodada ✋😬🤚\n", cidade2);
 
    default:
      printf("🚫 Opção Invalida! Escolha um Número de 1 a 8 ! 🚫\n");
+     continue;
       break;
 }
 //Pergunta ao usuario se ele quer continuar jogando
@@ -323,8 +331,86 @@ printf("| Digite sua opção ➡ ");
 scanf("%d", &jogarNovamente);
 printf("\n===========================================================================\n");   
 } while (jogarNovamente == 1 );
-  printf("Obrigado Por Jogar Cartas Super Trunfo! Até a próxima 🃏🎮\n");
+  printf("\n🔥 PARABÉNS! VOCÊ DESBLOQUEOU O DESAFIO FINAL! 🔥\n");
+  printf("Prepare-se para escolher DOIS atributos de uma vez!\n");
+// 1️⃣ MENU DINÂMICO DO PRIMEIRO ATRIBUTO
+do{
+  printf("\nEscolha o PRIMEIRO atributo para comparar:\n");
+  printf("1. <População>\n");
+  printf("2. <Área>\n");
+  printf("3. <PIB>\n");
+  printf("4. <Pontos Turísticos>\n");
+  printf("5. <Densidade Demográfica> (Menor vence!)\n");
+  printf("Digite sua opção (1-5)➡ ⬅");
+  scanf("%d", &primOpcao);
+// Tratamento de opção inválida no menu 1
+    if (primOpcao < 1 || primOpcao > 5){
+    printf("\n🚫 Opção Inválida! Escolha entre 1 e 5.\n");
+    continue; // Volta pro início do loop
+}
+// 2️⃣ MENU DINÂMICO DO SEGUNDO ATRIBUTO (Oculta o que já foi escolhido)
+  printf("\nEscolha o SEGUNDO atributo para comparar:\n");
+   switch (primOpcao) {
+case 1: printf("2. Área\n3. PIB\n4. Pontos Turísticos\n5. Densidade Demográfica\n"); break;
+case 2: printf("1. População\n3. PIB\n4. Pontos Turísticos\n5. Densidade Demográfica\n"); break;
+case 3: printf("1. População\n2. Área\n4. Pontos Turísticos\n5. Densidade Demográfica\n"); break;
+case 4: printf("1. População\n2. Área\n3. PIB\n5. Densidade Demográfica\n"); break;
+case 5: printf("1. População\n2. Área\n3. PIB\n4. Pontos Turísticos\n"); break;
+}
+  printf("Digite sua opção (1-5)➡ ⬅");
+  scanf("%d", &segOpcao);
+// Tratamento de opção inválida no menu 2
+  if (segOpcao < 1 || segOpcao > 5 || segOpcao == primOpcao){
+  printf("\n🚫 Opção Inválida! Escolha entre 1 e 5, e diferente da primeira escolha.\n");
+  continue;
+}
+// ATRIBUINDO VALORES DO ATRIBUTO 1
+  switch (primOpcao) {
+  case 1: valor1_Atr1 = populacao1; valor2_Atr1 = populacao2; break;
+  case 2: valor1_Atr1 = area1; valor2_Atr1 = area2; break;
+  case 3: valor1_Atr1 = PIB1; valor2_Atr1 = PIB2; break;
+  case 4: valor1_Atr1 = NPT1; valor2_Atr1 = NPT2; break;
+  case 5: valor1_Atr1 = densidade1; valor2_Atr1 = densidade2; break;
+}
+// ATRIBUINDO VALORES DO ATRIBUTO 2
+  switch (segOpcao) {
+  case 1: valor1_Atr2 = populacao1; valor2_Atr2 = populacao2; break;
+  case 2: valor1_Atr2 = area1; valor2_Atr2 = area2; break;
+  case 3: valor1_Atr2 = PIB1; valor2_Atr2 = PIB2; break;
+  case 4: valor1_Atr2 = NPT1; valor2_Atr2 = NPT2; break;
+  case 5: valor1_Atr2 = densidade1; valor2_Atr2 = densidade2; break;
+}
+//Regra da densidade (Menor Vence)
+ pontuacaoCarta1_Atr1 = (primOpcao == 5) ? (1.0 / valor1_Atr1) : valor1_Atr1;
+ pontuacaoCarta2_Atr1 = (primOpcao == 5) ? (1.0 / valor2_Atr1) : valor2_Atr1;
+
+ pontuacaoCarta1_Atr2 = (segOpcao == 5) ? (1.0 / valor1_Atr2) : valor1_Atr2;
+ pontuacaoCarta2_Atr2 = (segOpcao == 5) ? (1.0 / valor2_Atr2) : valor2_Atr2; 
+//Soma das pontuações para determinar o vencedor
+ float pontuacaoTotalCarta1 = pontuacaoCarta1_Atr1 + pontuacaoCarta1_Atr2;
+ float pontuacaoTotalCarta2 = pontuacaoCarta2_Atr1 + pontuacaoCarta2_Atr2;
+//Exibindo o resultado final
+printf("\n============================================================================\n");
+printf("📊 RESULTADO DA BATALHA 📊\n");
+printf("============================================================================\n");
+printf("🏙️ Carta 1: %s | 🏙️ Carta 2: %s\n\n", cidade1, cidade2);
+// Mostrando os dados reais comparados
+printf("Atributo 1: Carta 1 = %.2f | Carta 2 = %.2f\n", valor1_Atr1, valor2_Atr1);
+printf("Atributo 2: Carta 1 = %.2f | Carta 2 = %.2f\n\n", valor1_Atr2, valor2_Atr2);
+// Mostrando o total ponderado
+printf("Pontuação Total da Carta 1: %.2f\n", pontuacaoTotalCarta1);
+printf("Pontuação Total da Carta 2: %.2f\n\n", pontuacaoTotalCarta2);
+// Operador Ternário para Elegância de Decisão
+printf("============================================================================\n");
+(pontuacaoTotalCarta1 > pontuacaoTotalCarta2) ? printf("🏆 VENCEDOR FINAL: %s (Carta 1) 🏆\n", cidade1) :
+(pontuacaoTotalCarta2 > pontuacaoTotalCarta1) ? printf("🏆 VENCEDOR FINAL: %s (Carta 2) 🏆\n", cidade2) :
+printf("🤝 RESULTADO FINAL: Empate! 🤝\n");
+printf("============================================================================\n");
+printf("| Deseja voltar para o menu principal? (1-Sim 💪🎮/ 0-Não😥)➡ ");
+scanf("%d", &voltarMenu);
+printf("============================================================================\n");
+}while (voltarMenu == 1 );
+printf("Obrigado Por Jogar Cartas Super Trunfo! Até a próxima 🃏🎮\n");
 
   return 0;
-
 }
